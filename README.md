@@ -271,5 +271,5 @@ This project is licensed under the Business Source License 1.1 - see the [LICENS
 ---
 
 <p align="center">
-  Built with ❤️ on <a href="https://sui.io">Sui</a>
+  Built by the 4dummies team, devs on<a href="https://sui.io">Sui</a>
 </p>
