@@ -1,0 +1,18 @@
+[package]
+name = "ilayer"
+version = "1.0.0"
+edition = "2024.beta"
+
+[dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet" }
+
+[addresses]
+ilayer = "0x0"
+std = "0x1"
+sui = "0x2"
+
+[dev-dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet" }
+
+[dev-addresses]
+ilayer = "0x0"
