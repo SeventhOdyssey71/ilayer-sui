@@ -1,20 +1,17 @@
 module ilayer::order_hub {
-    use sui::object::{Self, UID, ID};
-    use sui::transfer;
-    use sui::tx_context::{Self, TxContext};
+    use sui::object;
     use sui::clock::{Self, Clock};
     use sui::coin::{Self, Coin};
     use sui::balance::{Self, Balance};
     use sui::event;
-    use sui::dynamic_field;
     use sui::table::{Self, Table};
     use sui::sui::SUI;
     
     use ilayer::types::{
-        Self, Order, OrderRequest, Token,
-        order_user, order_recipient, order_inputs, order_deadline,
-        order_primary_filler_deadline, order_sponsored,
-        token_type_coin, status_active, status_filled, status_withdrawn
+        Self, Order, OrderRequest,
+        order_user, order_deadline,
+        order_primary_filler_deadline,
+        status_active, status_filled, status_withdrawn
     };
     use ilayer::validator::{Self, DomainSeparator};
 
@@ -31,13 +28,13 @@ module ilayer::order_hub {
     const EOrderExpired: u64 = 3003;
     const EOrderNotActive: u64 = 3004;
     const EOrderCannotBeWithdrawn: u64 = 3005;
-    const EOrderCannotBeFilled: u64 = 3006;
+    // const EOrderCannotBeFilled: u64 = 3006; // Unused
     const ERequestNonceReused: u64 = 3007;
     const ERequestExpired: u64 = 3008;
     const EInvalidOrderSignature: u64 = 3009;
     const EInvalidSourceChain: u64 = 3010;
-    const EPrimaryFillerExpired: u64 = 3011;
-    const EInsufficientFunds: u64 = 3012;
+    // const EPrimaryFillerExpired: u64 = 3011; // Unused
+    // const EInsufficientFunds: u64 = 3012; // Unused
 
     // ======== Structs ========
     
@@ -65,10 +62,11 @@ module ilayer::order_hub {
         creator: address,
     }
 
-    public struct TokenBalance<phantom T> has store {
-        token_type: vector<u8>,
-        balance: Balance<T>,
-    }
+    // Unused struct - commented out
+    // public struct TokenBalance<phantom T> has store {
+    //     token_type: vector<u8>,
+    //     balance: Balance<T>,
+    // }
 
     public struct OrderCapability has key, store {
         id: UID,
@@ -274,8 +272,8 @@ module ilayer::order_hub {
     public fun settle_order(
         hub: &mut OrderHub,
         order_id: ID,
-        proof: vector<u8>, // Cross-chain proof
-        ctx: &mut TxContext
+        _proof: vector<u8>, // Cross-chain proof
+        _ctx: &mut TxContext
     ) {
         let order_info = table::borrow_mut(&mut hub.orders, order_id);
         
@@ -352,9 +350,9 @@ module ilayer::order_hub {
     fun process_deposits(
         hub: &mut OrderHub,
         order_id: ID,
-        order: &Order,
+        _order: &Order,
         payment: Coin<SUI>,
-        ctx: &mut TxContext
+        _ctx: &TxContext
     ) {
         // For simplicity, assuming SUI deposits only
         // In production, would handle multiple tokens

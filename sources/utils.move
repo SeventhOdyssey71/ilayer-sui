@@ -2,7 +2,7 @@ module ilayer::utils {
 
     // ======== Constants ========
     
-    const EEMPTY_VECTOR: u64 = 8001;
+    // const EEMPTY_VECTOR: u64 = 8001; // Unused
     const EINVALID_LENGTH: u64 = 8002;
     const EINDEX_OUT_OF_BOUNDS: u64 = 8003;
 

@@ -1,5 +1,5 @@
 module ilayer::types {
-    use sui::object::ID;
+    // use sui::object::ID; // Unused
 
     // ======== Constants ========
     
@@ -16,11 +16,11 @@ module ilayer::types {
 
     // ======== Error Codes ========
     
-    const ENativeTransferFailed: u64 = 1001;
-    const EUnsupportedTransfer: u64 = 1002;
-    const EInsufficientBalance: u64 = 1003;
+    // const ENativeTransferFailed: u64 = 1001; // Unused
+    // const EUnsupportedTransfer: u64 = 1002; // Unused
+    // const EInsufficientBalance: u64 = 1003; // Unused
     const EInvalidTokenType: u64 = 1004;
-    const EInvalidStatus: u64 = 1005;
+    // const EInvalidStatus: u64 = 1005; // Unused
 
     // ======== Structs ========
     

@@ -1,23 +1,19 @@
 module ilayer::simple_swap {
-    use sui::object::{Self, UID};
-    use sui::transfer;
-    use sui::tx_context::{Self, TxContext};
+    use sui::object;
     use sui::coin::{Self, Coin};
     use sui::balance::{Self, Balance};
     use sui::event;
-    
-    use ilayer::types::{Token, token_type_coin};
 
     // ======== Constants ========
     
     const EXCHANGE_RATE_PRECISION: u64 = 1000000; // 6 decimals
-    const DEFAULT_EXCHANGE_RATE: u64 = 1000; // 0.001 (1 SUI = 1000 USDC)
+    // const DEFAULT_EXCHANGE_RATE: u64 = 1000; // 0.001 (1 SUI = 1000 USDC) // Unused
 
     // ======== Error Codes ========
     
     const EInsufficientInput: u64 = 11001;
     const EInsufficientLiquidity: u64 = 11002;
-    const EInvalidPair: u64 = 11003;
+    // const EInvalidPair: u64 = 11003; // Unused
     const ESlippageExceeded: u64 = 11004;
 
     // ======== Structs ========
@@ -143,7 +139,7 @@ module ilayer::simple_swap {
         pool: &mut SwapPool<CoinA, CoinB>,
         coin_a: Coin<CoinA>,
         coin_b: Coin<CoinB>,
-        ctx: &TxContext
+        _ctx: &TxContext
     ) {
         balance::join(&mut pool.reserve_a, coin::into_balance(coin_a));
         balance::join(&mut pool.reserve_b, coin::into_balance(coin_b));

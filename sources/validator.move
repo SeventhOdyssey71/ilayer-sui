@@ -2,7 +2,7 @@ module ilayer::validator {
     use sui::bcs;
     use sui::hash;
     use sui::ed25519;
-    use ilayer::types::{Order, OrderRequest, order_user};
+    use ilayer::types::{Order, OrderRequest};
 
     // ======== Constants ========
     
@@ -11,9 +11,9 @@ module ilayer::validator {
     
     // ======== Error Codes ========
     
-    const EInvalidSignature: u64 = 2001;
-    const EInvalidPublicKey: u64 = 2002;
-    const ESignatureMismatch: u64 = 2003;
+    // const EInvalidSignature: u64 = 2001; // Unused
+    // const EInvalidPublicKey: u64 = 2002; // Unused
+    // const ESignatureMismatch: u64 = 2003; // Unused
 
     // ======== Structs ========
     

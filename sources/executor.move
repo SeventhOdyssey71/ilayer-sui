@@ -1,13 +1,11 @@
 module ilayer::executor {
-    use sui::object::{Self, UID};
-    use sui::tx_context::{Self, TxContext};
-    use sui::transfer;
+    use sui::object;
     use sui::event;
 
     // ======== Error Codes ========
     
     const ENotAuthorized: u64 = 5001;
-    const ECallFailed: u64 = 5002;
+    // const ECallFailed: u64 = 5002; // Unused
     const EInvalidTarget: u64 = 5003;
 
     // ======== Structs ========

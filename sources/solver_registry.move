@@ -1,9 +1,7 @@
 module ilayer::solver_registry {
     use std::string::{Self, String};
-    use sui::object::{Self, UID};
+    use sui::object;
     use sui::table::{Self, Table};
-    use sui::tx_context::{Self, TxContext};
-    use sui::transfer;
     use sui::event;
     use sui::clock::{Self, Clock};
 

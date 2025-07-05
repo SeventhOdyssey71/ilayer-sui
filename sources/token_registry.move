@@ -1,17 +1,15 @@
 module ilayer::token_registry {
     use std::string::{Self, String};
-    use sui::object::{Self, UID};
+    use sui::object;
     use sui::table::{Self, Table};
-    use sui::tx_context::{Self, TxContext};
-    use sui::transfer;
     use sui::event;
 
     // ======== Error Codes ========
     
     const ENotOwner: u64 = 6001;
-    const ETokenAlreadyRegistered: u64 = 6002;
+    // const ETokenAlreadyRegistered: u64 = 6002; // Unused
     const ETokenNotRegistered: u64 = 6003;
-    const EInvalidTokenType: u64 = 6004;
+    // const EInvalidTokenType: u64 = 6004; // Unused
 
     // ======== Structs ========
     

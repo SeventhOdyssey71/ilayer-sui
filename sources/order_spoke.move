@@ -1,19 +1,14 @@
 module ilayer::order_spoke {
-    use sui::object::{Self, UID, ID};
-    use sui::transfer;
-    use sui::tx_context::{Self, TxContext};
+    use sui::object;
     use sui::clock::{Self, Clock};
     use sui::coin::{Self, Coin};
-    use sui::balance::{Self, Balance};
     use sui::event;
     use sui::table::{Self, Table};
-    use sui::dynamic_object_field;
     
     use ilayer::types::{
-        Self, Order, Token,
-        order_user, order_recipient, order_outputs, order_deadline,
-        order_primary_filler_deadline, order_filler, order_sponsored,
-        token_type_coin, status_active, status_filled
+        Self, Order,
+        order_recipient, order_outputs, order_deadline,
+        order_primary_filler_deadline, order_filler, order_sponsored
     };
     use ilayer::executor::{Self, ExecutorCap};
 
@@ -29,12 +24,12 @@ module ilayer::order_spoke {
     const EOrderAlreadyFilled: u64 = 4002;
     const EOrderExpired: u64 = 4003;
     const ENotPrimaryFiller: u64 = 4004;
-    const EPrimaryFillerDeadlineNotExpired: u64 = 4005;
+    // const EPrimaryFillerDeadlineNotExpired: u64 = 4005; // Unused
     const EInvalidFiller: u64 = 4006;
     const EInsufficientOutputs: u64 = 4007;
     const ECallFailed: u64 = 4008;
     const ESolverNotRegistered: u64 = 4009;
-    const EInvalidProof: u64 = 4010;
+    // const EInvalidProof: u64 = 4010; // Unused
 
     // ======== Structs ========
     
@@ -158,7 +153,7 @@ module ilayer::order_spoke {
         spoke: &mut OrderSpoke,
         order: Order,
         order_id: vector<u8>,
-        proof: vector<u8>, // Cross-chain proof
+        _proof: vector<u8>, // Cross-chain proof
         outputs: vector<Coin<T>>,
         clock: &Clock,
         ctx: &mut TxContext
@@ -240,7 +235,7 @@ module ilayer::order_spoke {
     }
 
     fun process_outputs<T>(
-        spoke: &mut OrderSpoke,
+        spoke: &OrderSpoke,
         order: &Order,
         mut outputs: vector<Coin<T>>,
         ctx: &mut TxContext
@@ -260,7 +255,7 @@ module ilayer::order_spoke {
         
         while (i < vector::length(&outputs)) {
             let mut output_coin = vector::pop_back(&mut outputs);
-            let expected = vector::borrow(order_outputs, i);
+            let _expected = vector::borrow(order_outputs, i);
             
             let amount = coin::value(&output_coin);
             total_value = total_value + amount;
