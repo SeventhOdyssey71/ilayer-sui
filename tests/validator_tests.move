@@ -111,10 +111,10 @@ module ilayer::validator_tests {
     // In production, this would use actual Ed25519 signing
     fun create_test_signature(): (vector<u8>, vector<u8>) {
         // Mock signature (64 bytes) and public key (32 bytes)
-        let signature = vector::empty<u8>();
-        let public_key = vector::empty<u8>();
+        let mut signature = vector::empty<u8>();
+        let mut public_key = vector::empty<u8>();
         
-        let i = 0;
+        let mut i = 0;
         while (i < 64) {
             vector::push_back(&mut signature, ((i % 256) as u8));
             i = i + 1;

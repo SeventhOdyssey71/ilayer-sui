@@ -177,11 +177,12 @@ module ilayer::order_spoke_tests {
                 0
             );
             
-            let order_id = b"order123";
-            let proof = b"proof_data";
-            let output_coins = vector[test_scenario::take_from_sender<Coin<SUI>>(&scenario)];
+            let _order_id = b"order123";
+            let _proof = b"proof_data";
+            let coin = test_scenario::take_from_sender<Coin<SUI>>(&scenario);
             
             // This would process the fill in production
+            // let output_coins = vector[coin];
             // let receipt = fill_order(
             //     &mut spoke,
             //     order,
@@ -191,6 +192,9 @@ module ilayer::order_spoke_tests {
             //     &clock,
             //     test_scenario::ctx(&mut scenario)
             // );
+            
+            // Return the coin since we're not using it
+            test_scenario::return_to_sender(&scenario, coin);
             
             test_scenario::return_shared(spoke);
             test_scenario::return_shared(clock);
