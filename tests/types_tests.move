@@ -4,7 +4,7 @@ module ilayer::types_tests {
         Self, Token, Order, OrderRequest,
         new_token, new_order, new_order_request,
         token_type, token_address, token_id, token_amount,
-        order_user, order_recipient, order_deadline,
+        order_user, order_recipient, order_deadline, order_inputs,
         token_type_coin, token_type_nft, status_active
     };
     use std::vector;

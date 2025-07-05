@@ -1,6 +1,5 @@
 module ilayer::token_registry {
     use std::string::{Self, String};
-    use sui::object;
     use sui::table::{Self, Table};
     use sui::event;
 

@@ -1,5 +1,4 @@
 module ilayer::simple_swap {
-    use sui::object;
     use sui::coin::{Self, Coin};
     use sui::balance::{Self, Balance};
     use sui::event;

@@ -1,5 +1,4 @@
 module ilayer::cross_chain {
-    use sui::object;
     use sui::table::{Self, Table};
     use sui::event;
     use sui::bcs;
@@ -227,7 +226,7 @@ module ilayer::cross_chain {
         message: InboundMessage,
         _ctx: &TxContext
     ): vector<u8> {
-        let InboundMessage { source_chain, message_type, payload, proof: _proof } = message;
+        let InboundMessage { source_chain, message_type, payload, proof } = message;
         
         // Validate source chain
         validate_chain(manager, source_chain);
@@ -272,7 +271,7 @@ module ilayer::cross_chain {
     fun verify_bridge_proof(
         proof: &vector<u8>,
         message_hash: vector<u8>,
-        source_chain: u32
+        _source_chain: u32
     ): bool {
         // Verify proof structure
         if (vector::length(proof) < 100) {
@@ -292,23 +291,23 @@ module ilayer::cross_chain {
         // 4. Verify payload hash matches message_hash
         
         // For MVP, verify basic structure and message hash presence
-        let hash_found = false;
-        let i = 0;
+        let mut hash_found = false;
+        let mut i = 0;
         let proof_len = vector::length(proof);
         let hash_len = vector::length(&message_hash);
         
         // Search for message hash in proof
         while (i + hash_len <= proof_len) {
-            let j = 0;
-            let match = true;
+            let mut j = 0;
+            let mut is_match = true;
             while (j < hash_len) {
                 if (*vector::borrow(proof, i + j) != *vector::borrow(&message_hash, j)) {
-                    match = false;
+                    is_match = false;
                     break
                 };
                 j = j + 1;
             };
-            if (match) {
+            if (is_match) {
                 hash_found = true;
                 break
             };

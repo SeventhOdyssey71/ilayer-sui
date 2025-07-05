@@ -1,5 +1,4 @@
 module ilayer::fee_manager {
-    use sui::object;
     use sui::table::{Self, Table};
     use sui::balance::{Self, Balance};
     use sui::coin::{Self, Coin};
@@ -119,12 +118,8 @@ module ilayer::fee_manager {
         let fee_balance = coin::into_balance(fee_coin);
         
         // Store fee balance
-        // Get token type from registry or use default
-        let token_type = if (vector::is_empty(&token.token_address)) {
-            b"SUI"
-        } else {
-            token.token_address
-        };
+        // For now, we only support SUI tokens
+        let token_type = b"SUI";
         if (!table::contains(&fee_manager.fee_balances, token_type)) {
             table::add(&mut fee_manager.fee_balances, token_type, balance::zero<SUI>());
         };

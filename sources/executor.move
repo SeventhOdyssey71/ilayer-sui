@@ -1,5 +1,4 @@
 module ilayer::executor {
-    use sui::object;
     use sui::event;
 
     // ======== Error Codes ========

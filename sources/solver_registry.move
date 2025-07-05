@@ -1,6 +1,5 @@
 module ilayer::solver_registry {
     use std::string::{Self, String};
-    use sui::object;
     use sui::table::{Self, Table};
     use sui::event;
     use sui::clock::{Self, Clock};

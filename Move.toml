@@ -11,6 +11,3 @@ std = "0x1"
 sui = "0x2"
 
 [dev-dependencies]
-
-[dev-addresses]
-ilayer = "0x0"
