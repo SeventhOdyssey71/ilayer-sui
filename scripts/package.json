@@ -1,0 +1,21 @@
+{
+  "name": "ilayer-sui-scripts",
+  "version": "1.0.0",
+  "description": "Scripts for interacting with iLayer on Sui",
+  "scripts": {
+    "create-order": "ts-node create_order.ts",
+    "create-order-fixed": "ts-node create_order_final.ts",
+    "fill-order": "ts-node fill_order.ts",
+    "deploy": "./deploy.sh"
+  },
+  "dependencies": {
+    "@mysten/sui.js": "^0.50.0",
+    "@mysten/bcs": "^0.10.0",
+    "js-sha3": "^0.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}

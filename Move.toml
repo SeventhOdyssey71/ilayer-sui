@@ -1,0 +1,16 @@
+[package]
+name = "ilayer"
+version = "1.0.0"
+edition = "2024.beta"
+
+[dependencies]
+
+[addresses]
+ilayer = "0x0"
+std = "0x1"
+sui = "0x2"
+
+[dev-dependencies]
+
+[dev-addresses]
+ilayer = "0x0"
